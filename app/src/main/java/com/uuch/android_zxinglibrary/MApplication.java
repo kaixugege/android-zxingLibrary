@@ -13,7 +13,7 @@ public class MApplication extends Application{
     @Override
     public void onCreate() {
         super.onCreate();
-
+        //ZXing  初始化
         ZXingLibrary.initDisplayOpinion(this);
     }
 }

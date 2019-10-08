@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">android-zxingLibrary</string>
     <string name="title_activity_three">ThreeActivity</string>
+    <string name="bt_1_txt">简单模式,加载默认二维码扫描界面</string>
+    <string name="bt_2_txt">选择图片并解析</string>
+    <string name="bt_3_txt">定制化扫描界面</string>
+    <string name="bt_4_txt">测试生成二维码图片</string>
+    <string name="bt_5_txt">扫描放大二维码</string>
 </resources>

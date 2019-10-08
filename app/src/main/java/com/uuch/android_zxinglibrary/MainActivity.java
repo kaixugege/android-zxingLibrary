@@ -6,7 +6,6 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -36,6 +35,7 @@ public class MainActivity extends BaseActivity implements EasyPermissions.Permis
     public Button button2 = null;
     public Button button3 = null;
     public Button button4 = null;
+    public Button button5 = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +72,7 @@ public class MainActivity extends BaseActivity implements EasyPermissions.Permis
         button2 = (Button) findViewById(R.id.button2);
         button3 = (Button) findViewById(R.id.button3);
         button4 = (Button) findViewById(R.id.button4);
+        button5 = (Button) findViewById(R.id.button5);
         /**
          * 打开默认二维码扫描界面
          *
@@ -85,6 +86,7 @@ public class MainActivity extends BaseActivity implements EasyPermissions.Permis
         button2.setOnClickListener(new ButtonOnClickListener(button2.getId()));
         button3.setOnClickListener(new ButtonOnClickListener(button3.getId()));
         button4.setOnClickListener(new ButtonOnClickListener(button4.getId()));
+        button5.setOnClickListener(new ButtonOnClickListener(button5.getId()));
     }
 
 
@@ -163,6 +165,7 @@ public class MainActivity extends BaseActivity implements EasyPermissions.Permis
 
     @AfterPermissionGranted(REQUEST_CAMERA_PERM)
     public void cameraTask(int viewId) {
+
         if (EasyPermissions.hasPermissions(this, Manifest.permission.CAMERA)) {
             // Have permission, do the thing!
             onClick(viewId);
@@ -171,6 +174,7 @@ public class MainActivity extends BaseActivity implements EasyPermissions.Permis
             EasyPermissions.requestPermissions(this, "需要请求camera权限",
                     REQUEST_CAMERA_PERM, Manifest.permission.CAMERA);
         }
+
     }
 
     @Override
@@ -206,15 +210,18 @@ public class MainActivity extends BaseActivity implements EasyPermissions.Permis
 
         @Override
         public void onClick(View v) {
+            //打开相册
             if (v.getId() == R.id.button2) {
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_PICK);
                 intent.setType("image/*");
                 startActivityForResult(intent, REQUEST_IMAGE);
             } else if (v.getId() == R.id.button4) {
+                //打开生成二维码图片
                 Intent intent = new Intent(MainActivity.this, ThreeActivity.class);
                 startActivity(intent);
             } else {
+                //其他的开始判断权限
                 cameraTask(buttonId);
             }
         }
@@ -232,6 +239,10 @@ public class MainActivity extends BaseActivity implements EasyPermissions.Permis
                 startActivityForResult(intent, REQUEST_CODE);
                 break;
             case R.id.button3:
+                intent = new Intent(MainActivity.this, SecondActivity.class);
+                startActivityForResult(intent, REQUEST_CODE);
+                break;
+            case R.id.button5:
                 intent = new Intent(MainActivity.this, SecondActivity.class);
                 startActivityForResult(intent, REQUEST_CODE);
                 break;
